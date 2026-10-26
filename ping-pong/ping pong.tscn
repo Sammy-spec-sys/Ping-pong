@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://bwr1374y1r7pc"]
+
+[ext_resource type="Script" uid="uid://dnu2mmh1xbpuj" path="res://ball.gd" id="1_cv0ww"]
+[ext_resource type="Script" uid="uid://cvk4j3y353u5s" path="res://ping_pong.gd" id="1_l4qs7"]
+[ext_resource type="Script" uid="uid://db6n7esmwnrcd" path="res://paddle_.gd" id="1_n3reh"]
+[ext_resource type="Script" uid="uid://vm4bol5lym0f" path="res://paddle_2.gd" id="2_l4qs7"]
+[ext_resource type="Script" uid="uid://u3kvn14p7v4e" path="res://polygon_2d.gd" id="2_o5hqr"]
+[ext_resource type="Script" uid="uid://byowg76qshmne" path="res://resume_bottom.gd" id="6_stiyt"]
+[ext_resource type="Script" uid="uid://dvbk78m5s8u5v" path="res://restart_bottom.gd" id="7_nvsjb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cv0ww"]
+size = Vector2(20, 20.433262)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_63dtc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5hqr"]
+size = Vector2(17.943045, 20)
+
+[node name="Main" type="Node2D" unique_id=288018926]
+script = ExtResource("1_l4qs7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=195621798]
+offset_left = -16.0
+offset_top = -12.0
+offset_right = 1169.0
+offset_bottom = 685.0
+color = Color(1, 0, 1, 1)
+
+[node name="paddle1" type="Area2D" parent="." unique_id=1321450802]
+position = Vector2(30, 360)
+script = ExtResource("1_n3reh")
+
+[node name="ColorRect" type="ColorRect" parent="paddle1" unique_id=763294885]
+custom_minimum_size = Vector2(20, 100)
+offset_left = -10.0
+offset_top = -50.000015
+offset_right = 10.0
+offset_bottom = 49.999985
+color = Color(0.69646573, 0.06424312, 0.75449944, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddle1" unique_id=1638996358]
+scale = Vector2(1, 4.89398)
+shape = SubResource("RectangleShape2D_cv0ww")
+
+[node name="paddle2" type="Area2D" parent="." unique_id=647418186]
+position = Vector2(1125, 361)
+script = ExtResource("2_l4qs7")
+
+[node name="ColorRect" type="ColorRect" parent="paddle2" unique_id=1369248001]
+custom_minimum_size = Vector2(20, 100)
+offset_left = -10.0
+offset_top = -49.000015
+offset_right = 10.0
+offset_bottom = 50.999985
+color = Color(0.28719178, 0.6030459, 0.51179194, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddle2" unique_id=419427533]
+position = Vector2(0, 1)
+scale = Vector2(1, 4.89398)
+shape = SubResource("RectangleShape2D_cv0ww")
+
+[node name="Ball" type="Area2D" parent="." unique_id=579131061]
+position = Vector2(586, 346)
+script = ExtResource("1_cv0ww")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1582951088]
+shape = SubResource("CircleShape2D_63dtc")
+
+[node name="Polygon2D" type="Polygon2D" parent="Ball" unique_id=433133060]
+color = Color(1, 0.43137255, 0.4392157, 1)
+script = ExtResource("2_o5hqr")
+
+[node name="walltop" type="StaticBody2D" parent="." unique_id=39823636]
+position = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walltop" unique_id=819623682]
+position = Vector2(608, 9)
+scale = Vector2(71.1314, -1.0215398)
+shape = SubResource("RectangleShape2D_o5hqr")
+
+[node name="ColorRect" type="ColorRect" parent="walltop" unique_id=2090643364]
+offset_left = -29.0
+offset_top = -3.0
+offset_right = 1251.0
+offset_bottom = 17.0
+color = Color(0, 0, 0, 1)
+
+[node name="wallbottom" type="StaticBody2D" parent="." unique_id=1718080471]
+position = Vector2(-25, 653)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallbottom" unique_id=531371025]
+position = Vector2(639.99994, 1)
+scale = Vector2(71.1314, -1.0215398)
+shape = SubResource("RectangleShape2D_o5hqr")
+
+[node name="ColorRect" type="ColorRect" parent="wallbottom" unique_id=2012218091]
+offset_top = -9.0
+offset_right = 1280.0
+offset_bottom = 11.0
+color = Color(0, 0, 0, 1)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1855125140]
+
+[node name="ScoreLabel" type="Label" parent="UI" unique_id=768886351]
+offset_left = 539.0
+offset_top = 7.0
+offset_right = 632.0
+offset_bottom = 74.0
+theme_override_font_sizes/font_size = 48
+text = "0 : 0"
+
+[node name="PauseMenu" type="Control" parent="UI" unique_id=1072094527]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="UI/PauseMenu" unique_id=2021123273]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.20392157)
+
+[node name="Panel" type="Panel" parent="UI/PauseMenu" unique_id=1400655678]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 191.0
+offset_right = 788.0
+offset_bottom = 491.0
+
+[node name="TitleLabel" type="Label" parent="UI/PauseMenu/Panel" unique_id=1489070203]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 5.0
+offset_right = 214.0
+offset_bottom = 28.0
+scale = Vector2(1.4, 1.5999999)
+text = "PAUSA"
+
+[node name="ResumeBottom" type="Button" parent="UI/PauseMenu/Panel" unique_id=885394960]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 118.0
+offset_right = 247.0
+offset_bottom = 149.0
+theme_override_colors/font_hover_color = Color(0, 0.9490196, 0.9490196, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 1, 1)
+text = "REANUDAR"
+script = ExtResource("6_stiyt")
+
+[node name="RestartBottom" type="Button" parent="UI/PauseMenu/Panel" unique_id=1392593464]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 191.0
+offset_right = 243.0
+offset_bottom = 222.0
+theme_override_colors/font_hover_color = Color(0, 0.9490196, 0.9490196, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 1, 1)
+text = "REINICIAR"
+script = ExtResource("7_nvsjb")
+
+[connection signal="area_entered" from="Ball" to="Ball" method="_on_area_entered"]
+[connection signal="pressed" from="UI/PauseMenu/Panel/ResumeBottom" to="." method="_on_resume_bottom_pressed"]
+[connection signal="pressed" from="UI/PauseMenu/Panel/RestartBottom" to="." method="_on_restart_bottom_pressed"]
